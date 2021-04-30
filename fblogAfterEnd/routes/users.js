@@ -10,24 +10,27 @@ router.get('/',async (ctx,next)=>{
 })
 
 
-//增加用户  增删改查的 曾
-// router.post('/add',async (ctx,next)=>{
-//   let arr = [];
-//   arr.push(ctx.request.body['name']);
-//   arr.push(ctx.request.body['pass']);
-//   arr.push(ctx.request.body['auth']);
-//   await userService.addUserData(arr).then((data)=>{
-//     let r = '';
-//     if(data.affectedRows != 0){
-//       r = 'ok';
-//     }
-//     ctx.body = {
-//       data:r
-//     }
-//   }).catch(()=>{
-//     ctx.body = {
-//       data:'err'
-//     }
-//   })
-// })
+//增加博客文章
+router.post('/addArticle',async (ctx,next)=>{
+  let arr = [];
+  arr.push(ctx.request.body['title']);
+  arr.push(ctx.request.body['type']);
+  arr.push(ctx.request.body['content']);
+  arr.push(ctx.request.body['createTime'])
+  console.log(arr)
+  await userService.addUserData(arr).then((data)=>{
+    let r = '';
+    console.log(data)
+    if(data.affectedRows != 0){
+      r = 'ok';
+    }
+    ctx.body = {//ctx.body是返回的数据的结构体
+      data:r
+    }
+  }).catch(()=>{
+    ctx.body = {
+      data:'err'
+    }
+  })
+})
 module.exports = router

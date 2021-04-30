@@ -19,8 +19,8 @@ router.get('/json', async (ctx, next) => {
 router.post('/test',async(ctx,next)=>{
   let arr = [];
   console.log('aaaaaaaaaaaaaaaaaaaaaa',ctx.request.body)
-  ctx.status = 200;//确实这样以设置就好了
-
+  ctx.status = 200;//确实这样设置一下就好了
+  ctx.body = {message:"发布成功"};//body中设置的是返回的数据
 })
 
 module.exports = router
