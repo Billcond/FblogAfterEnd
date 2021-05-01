@@ -44,6 +44,11 @@ let allServices = {
          let _sql = "insert into articles set type=?,title=?,context=?,createtime=?;"
          return allServices.query(_sql, obj)
      },
+     deleteData:(obj) => {
+         console.log("删除数据库",obj)
+         let _sql = "delete from articles where title = ?"
+         return allServices.query(_sql,obj)
+     }
 }
 
 module.exports = allServices;
