@@ -2,7 +2,7 @@ const router = require('koa-router')()
 
 const userService = require('../controllers/mysqlConfig')
 
-router.prefix('/users')
+router.prefix('/articles')
 
 //获取所有用户get请求
 router.get('/',async (ctx,next)=>{
@@ -13,8 +13,8 @@ router.get('/',async (ctx,next)=>{
 //增加博客文章
 router.post('/addArticle',async (ctx,next)=>{
   let arr = [];
-  arr.push(ctx.request.body['title']);
   arr.push(ctx.request.body['type']);
+  arr.push(ctx.request.body['title']);
   arr.push(ctx.request.body['content']);
   arr.push(ctx.request.body['createTime'])
   console.log(arr)
@@ -23,9 +23,11 @@ router.post('/addArticle',async (ctx,next)=>{
     console.log(data)
     if(data.affectedRows != 0){
       r = 'ok';
+      message="增加成功"
     }
     ctx.body = {//ctx.body是返回的数据的结构体
-      data:r
+      data:r,
+      message:"发布文章成功"
     }
   }).catch(()=>{
     ctx.body = {

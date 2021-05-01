@@ -42,7 +42,6 @@ let allServices = {
     addUserData: (obj) => {
         console.log('数据库中',obj)
          let _sql = "insert into articles set type=?,title=?,context=?,createtime=?;"
-         
          return allServices.query(_sql, obj)
      },
 }
