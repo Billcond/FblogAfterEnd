@@ -57,4 +57,32 @@ router.post('/delete',async (ctx,next)=>{
     }
   })
 })
+
+//更新内容
+router.post('/updateArticle',async (ctx,next)=>{
+  let arr = [];
+  arr.push(ctx.request.body['type']);
+  arr.push(ctx.request.body['title']);
+  arr.push(ctx.request.body['content']);
+  arr.push(ctx.request.body['createTime']);
+  arr.push(ctx.request.body['id']);
+  console.log('将要更改的内容',arr)
+  await userService.updateDate(arr).then((data)=>{
+    let r = '';
+    let message = '';
+    console.log('更新中的data',data)//数据库操作成功返回的data
+    if(data.affectedRows != 0){
+      r = 'ok';
+      message="编辑文章成功"
+    }
+    ctx.body = {//ctx.body是返回的数据的结构体
+      data:r,
+      message:message//这里前面的message是前端的接口，后面的message是上卖弄定义的信息
+    }
+  }).catch(()=>{
+    ctx.body = {
+      data:'err'
+    }
+  })
+})
 module.exports = router

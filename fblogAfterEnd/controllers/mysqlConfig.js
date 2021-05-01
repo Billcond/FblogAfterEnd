@@ -48,6 +48,11 @@ let allServices = {
          console.log("删除数据库",obj)
          let _sql = "delete from articles where title = ?"
          return allServices.query(_sql,obj)
+     },
+     updateDate:(obj)=>{
+        console.log("更新数据库中的内容",obj)
+        let _sql = "update articles set type=?, title=?,context=?,createtime=? WHERE id=?"
+        return allServices.query(_sql,obj)
      }
 }
 
